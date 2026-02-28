@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kabob Land Restaurant</title>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body,html {
+    margin:0; padding:0; scroll-behavior:smooth;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #222;
+  }
+  h1,h2,h3,h4,h5,h6,p,a {
+    margin:0; padding:0;
+  }
+  a {
+    color: #e85a4f; text-decoration:none; transition: color 0.25s ease;
+  }
+  a:hover, a:focus {
+    color: #ff7f50;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius:4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e85a4f;
+    border-radius:4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff7f50;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Sticky Navbar */
+  header {
+    position: sticky;
+    top:0;
+    background: rgba(255 255 255 / 0.95);
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow:0 2px 10px rgb(0 0 0 / 0.1);
+    z-index: 9999;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #e85a4f;
+    letter-spacing: 1.5px;
+    user-select:none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.6rem;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    font-size: 1rem;
+    padding: 0.2rem 0;
+    border-bottom: 2px solid transparent;
+    display: inline-block;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    border-bottom-color: #e85a4f;
+    outline:none;
+  }
+
+  /* HERO */
+  #hero {
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e85a4f, #ff7043);
+  }
+  #hero .slider {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  #hero .slide {
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background-position: center center;
+    background-size: cover;
+    opacity:0;
+    transition: opacity 1.5s ease;
+    border-radius: 0 0 35px 35px;
+  }
+  #hero .slide.active {
+    opacity:1;
+    position: relative;
+    z-index: 1;
+  }
+  #hero .overlay-gradient {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(135deg, rgba(232, 90, 79,0.5) 0%, rgba(255, 112, 67,0.6) 100%);
+    border-radius: 0 0 35px 35px;
+    pointer-events:none;
+    z-index: 0;
+  }
+  #hero .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    max-width: 90vw;
+    padding: 1rem 2rem;
+    user-select:none;
+    text-shadow: 0 2px 10px rgb(0 0 0 / 0.6);
+  }
+  #hero .content h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+  }
+  #hero .content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.7rem;
+    font-weight: 500;
+  }
+  #hero .btn-cta {
+    background: #fff;
+    border:none;
+    padding: 0.85rem 2.1rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #e85a4f;
+    box-shadow: 0 4px 16px rgb(232 90 79 / 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select:none;
+  }
+  #hero .btn-cta:hover,
+  #hero .btn-cta:focus {
+    background: #ff7f50;
+    color: #fff;
+    outline:none;
+  }
+  #hero .ratings {
+    margin-top: 1.3rem;
+    font-size: 1rem;
+    color: #fff;
+    user-select:none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+  #hero .ratings svg {
+    fill: gold;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Section Titles */
+  section {
+    padding: 5rem 0 3rem;
+    scroll-margin-top: 70px;
+  }
+  section h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #e85a4f;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  section p.lead {
+    color: #444;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-weight: 500;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  /* Glassmorphism cards container */
+  .cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .card {
+    background: rgba(255 255 255 / 0.17);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255 255 255 /0.25);
+    padding: 1.8rem 1.7rem 2.5rem;
+    color: #222;
+    position: relative;
+    overflow: hidden;
+    user-select:none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.4s ease;
+  }
+  .card:hover, .card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(232, 90, 79, 0.45);
+    outline:none;
+  }
+  .card svg.icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    fill: #e85a4f;
+  }
+  .card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+  .card p {
+    font-size: 1rem;
+    color: #363636;
+    line-height: 1.4;
+  }
+
+  /* Testimonials */
+  #testimonials {
+    background: #ffefe9;
+    padding-bottom: 4rem;
+  }
+  .testimonials-wrapper {
+    max-width: 900px;
+    margin: 2rem auto 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    gap: 2rem;
+  }
+  .testimonial {
+    background: rgba(255 255 255 / 0.8);
+    padding: 1.6rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgb(232 90 79 / 0.15);
+    position: relative;
+    color: #4a403a;
+    font-style: italic;
+    user-select:none;
+  }
+  .testimonial p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .testimonial cite {
+    display: block;
+    text-align: right;
+    font-weight: 700;
+    color: #e85a4f;
+    font-style: normal;
+  }
+
+  /* Call to Action Section */
+  #cta-secondary {
+    background: linear-gradient(135deg, #e85a4fdd, #ff7043dd);
+    text-align: center;
+    border-radius: 35px 35px 0 0;
+    padding: 3rem 1rem;
+    color: white;
+    user-select:none;
+  }
+  #cta-secondary h2 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+  #cta-secondary button {
+    background: #fff;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #e85a4f;
+    box-shadow: 0 6px 20px rgba(255 112 67 / 0.6);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select:none;
+  }
+  #cta-secondary button:hover,
+  #cta-secondary button:focus {
+    background: #ff7f50;
+    color: #fff;
+    outline:none;
+  }
+
+  /* Contact Section */
+  #contact .contact-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  @media(max-width:720px) {
+    #contact .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Contact details */
+  .contact-details {
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    user-select:none;
+  }
+  .contact-details div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .contact-details svg.icon {
+    width: 28px;
+    height: 28px;
+    fill: #e85a4f;
+  }
+  .contact-details a, .contact-details span {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #555;
+  }
+  .contact-details a:hover,
+  .contact-details a:focus {
+    color: #e85a4f;
+    outline:none;
+  }
+
+  /* Contact Form */
+  form {
+    background: rgba(255 255 255 / 0.18);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255 255 255 / 0.25);
+    padding: 2rem 2.2rem 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    color: #222;
+    max-width: 460px;
+    user-select:none;
+  }
+  form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: #e85a4f;
+    font-size: 0.95rem;
+  }
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border-radius: 12px;
+    border: 1.6px solid #e85a4faa;
+    font-size: 1rem;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 1.6rem;
+  }
+  form input[type="text"]:focus,
+  form input[type="email"]:focus,
+  form textarea:focus {
+    outline:none;
+    border-color: #ff7f50;
+    box-shadow: 0 0 8px rgba(255,127,80,0.45);
+  }
+  form textarea {
+    min-height: 100px;
+    font-family: inherit;
+  }
+  form button[type="submit"] {
+    background: #e85a4f;
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select:none;
+  }
+  form button[type="submit"]:hover,
+  form button[type="submit"]:focus {
+    background: #ff7f50;
+    outline:none;
+  }
+  form .loading {
+    display: none;
+    margin: 0 auto 1rem auto;
+    width: 36px;
+  }
+  form .response-message {
+    text-align: center;
+    font-weight: 600;
+    color: #2e7d32;
+    font-size: 1rem;
+    margin-top: 0.8rem;
+    user-select:none;
+  }
+
+  /* Map Placeholder */
+  #map {
+    border-radius: 20px;
+    width: 100%;
+    height: 280px;
+    box-shadow: 0 6px 16px rgb(232 90 79 / 0.2);
+    border: none;
+    user-select:none;
+  }
+
+  /* Footer */
+  footer {
+    background: #e85a4f;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-weight: 600;
+    user-select:none;
+  }
+  footer a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  footer a:hover,
+  footer a:focus {
+    color: #ffccbb;
+    outline:none;
+  }
+
+  /* Subtle Animations */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  [data-animate].active {
+    opacity: 1;
+    transform: none;
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <nav class="container" aria-label="Primary Navigation">
+    <div class="logo" tabindex="0">Kabob Land</div>
+    <ul>
+      <li><a href="#hero" tabindex="0">Home</a></li>
+      <li><a href="#about" tabindex="0">About Us</a></li>
+      <li><a href="#services" tabindex="0">Services</a></li>
+      <li><a href="#contact" tabindex="0">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="hero" aria-label="Hero Section">
+    <div class="slider" aria-live="polite" aria-atomic="true">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1579693679636-b6606c223a5b?auto=format&fit=crop&w=1350&q=80');" role="img" aria-label="Meal served at Kabob Land"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1532634726-8b0d4d80e6da?auto=format&fit=crop&w=1350&q=80');" role="img" aria-label="Kabob skewers cooking on grill"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1617191516421-98d55a5e9c56?auto=format&fit=crop&w=1350&q=80');" role="img" aria-label="Cozy dining experience in Armenian restaurant"></div>
+    </div>
+    <div class="overlay-gradient"></div>
+    <div class="content">
+      <h1>Experience Authentic Armenian Kabobs</h1>
+      <p>Fresh ingredients, rich traditions, and unforgettable flavors in Glendale, CA.</p>
+      <button class="btn-cta" onclick="scrollToSection('#contact')" aria-label="Make a reservation or contact Kabob Land">Contact Us</button>
+      <div class="ratings" role="img" aria-label="Google rating 4.4 out of 5 stars">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.423l-6 5.848 1.415 8.281L12 18.896l-7.415 4.656L6 15.271 0 9.423l8.332-1.268z"/></svg>
+        <span>4.4 Google Rating</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" tabindex="-1" aria-labelledby="about-title" >
+    <h2 id="about-title" data-animate>About Us</h2>
+    <p class="lead" data-animate>At Kabob Land Restaurant, we bring the heart of Armenian cuisine to Glendale. Our chefs craft every dish with tradition, passion, and freshest ingredients. Join us for an unforgettable dining experience celebrating the authentic flavors of Armenia.</p>
+  </section>
+
+  <section id="services" aria-labelledby="services-title" tabindex="-1">
+    <h2 id="services-title" data-animate>Our Services</h2>
+    <div class="cards" aria-live="polite" data-animate>
+      <article class="card" tabindex="0" aria-label="Dine In Service">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 52h40v4H12zM16 16h32v20H16zM32 16v20"/></svg>
+        <h3>Dine In</h3>
+        <p>Enjoy a warm, welcoming atmosphere with our full seating and traditional decor.</p>
+      </article>
+      <article class="card" tabindex="0" aria-label="Takeout Orders Service">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M24 24h16v20H24zM28 44v8h8v-8"/></svg>
+        <h3>Takeout Orders</h3>
+        <p>Quick and tasty takeout options for those on the go, maintaining our quality standards.</p>
+      </article>
+      <article class="card" tabindex="0" aria-label="Catering Service">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 24h40v20H12zM16 44h32v4H16z"/></svg>
+        <h3>Catering</h3>
+        <p>Make your special events memorable with our custom catering packages and menu options.</p>
+      </article>
+      <article class="card" tabindex="0" aria-label="Online Reservations Service">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 32h24v12H20zM24 20v4h4v-4z"/></svg>
+        <h3>Online Reservations</h3>
+        <p>Reserve your table easily online and guarantee a perfect dining time at Kabob Land.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="testimonials" aria-labelledby="testimonials-title" tabindex="-1">
+    <h2 id="testimonials-title" data-animate>Testimonials</h2>
+    <div class="testimonials-wrapper" data-animate>
+      <blockquote class="testimonial" tabindex="0">
+        <p>"Kabob Land's kabobs tasted just like my grandmother’s recipes back in Armenia! The ambiance is perfect and staff incredibly welcoming."</p>
+        <cite>- Anahit G.</cite>
+      </blockquote>
+      <blockquote class="testimonial" tabindex="0">
+        <p>"Great family restaurant with an authentic touch. The lamb kabob is a must! Excellent service and beautifully decorated."</p>
+        <cite>- David M.</cite>
+      </blockquote>
+      <blockquote class="testimonial" tabindex="0">
+        <p>"We catered our wedding through Kabob Land and every guest was impressed. Delicious food and seamless service."</p>
+        <cite>- Sarah & Levon</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="cta-secondary" aria-label="Call to action">
+    <h2>Ready to Taste Authentic Armenian Flavors?</h2>
+    <button onclick="scrollToSection('#contact')" aria-label="Go to contact form to make reservation or inquiry">Contact Us Now</button>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title" tabindex="-1">
+    <h2 id="contact-title" data-animate>Contact Us</h2>
+    <div class="container contact-grid" data-animate>
+      <form id="contact-form" aria-label="Contact form for Kabob Land Restaurant" novalidate>
+        <label for="name-contact">Name</label>
+        <input type="text" id="name-contact" name="name" required autocomplete="name" placeholder="Your Name" aria-required="true" />
+        <label for="email-contact">Email</label>
+        <input type="email" id="email-contact" name="email" required autocomplete="email" placeholder="you@example.com" aria-required="true" />
+        <label for="message-contact">Message</label>
+        <textarea id="message-contact" name="message" required placeholder="Write your message here..." aria-required="true"></textarea>
+        <button type="submit" aria-label="Submit contact form">Send Message</button>
+      </form>
+      <div class="contact-details" aria-label="Business contact details">
+        <div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg><span>Kabob Land Restaurant</span></div>
+        <div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8v13h18V8H3zm18-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/><path d="M7 10h10M7 14h6"/></svg><span>416 S Central Ave #1602, Glendale, CA 91204</span></div>
+        <div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.07 15.07 0 0 0 6.59 6.59l2.2-2.21a1 1 0 0 1 1.11-.27c1.2.48 2.5.74 3.84.74a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1C10.49 20 4 13.51 4 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.34.26 2.64.74 3.84a1 1 0 0 1-.27 1.11z"/></svg><a href="tel:+18185003962" aria-label="Call Kabob Land Restaurant">(818) 500-3962</a></div>
+        <div><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM4 6l8 5 8-5"/></svg><a href="mailto:info@yourbusiness.com" aria-label="Send email to info@yourbusiness.com">info@yourbusiness.com</a></div>
+      </div>
+    </div>
+    <div class="container" style="max-width:1000px; padding:1rem 1rem 4rem">
+      <iframe id="map" aria-label="Map location of Kabob Land Restaurant Glendale California" title="Kabob Land Restaurant Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.8608368430087!2d-118.26179678478284!3d34.144252780587224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c0e9ef1e343f%3A0x3b95d2437c0d6e2f!2s416%20S%20Central%20Ave%20%231602%2C%20Glendale%2C%20CA%2091204!5e0!3m2!1sen!2sus!4v1695662012342!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>Kabob Land Restaurant &bull; 416 S Central Ave #1602, Glendale, CA 91204 &bull; <a href="tel:+18185003962">(818) 500-3962</a> &bull; <a href="mailto:info@yourbusiness.com">info@yourbusiness.com</a></div>
+</footer>
+
+<div id="exit-modal-root" aria-live="polite"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script>
+  // Smooth scroll utility
+  function scrollToSection(selector) {
+    const el = document.querySelector(selector);
+    if(el){
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      el.focus({preventScroll:true});
+    }
+  }
+
+  // Hero Slider Logic (cycles every 6 seconds)
+  (() => {
+    const slides = document.querySelectorAll('#hero .slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 6000);
+  })();
+
+  // Animate on scroll for elements with data-animate attribute
+  function animateOnScroll(){
+    const animated = document.querySelectorAll('[data-animate]');
+    animated.forEach(el=>{
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 80){
+        el.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', animateOnScroll);
+  window.addEventListener('load', animateOnScroll);
+
+  // Contact form basic validation & demo submit (no real endpoint given)
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    if(!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+    alert('Thank you for contacting Kabob Land. We will get back to you shortly.');
+    contactForm.reset();
+  });
+
+  // EXIT INTENT MODAL USING REACT
+  (() => {
+    const e = React.createElement;
+    const root = document.getElementById('exit-modal-root');
+    let modalShown = false;
+
+    function ExitIntentModal(){
+      const {useState, useEffect} = React;
+      const [visible, setVisible] = useState(false);
+      const [activeTab, setActiveTab] = useState('buy');
+      const [formData, setFormData] = useState({
+        businessName: '',
+        colorChoice: '',
+        changes: ''
+      });
+      const [loading, setLoading] = useState(false);
+      const [responseMsg, setResponseMsg] = useState('');
+      const [canCloseTimeout, setCanCloseTimeout] = useState(false);
+
+      useEffect(() => {
+        const handleBeforeUnload = (event) => {
+          if(!modalShown) {
+            event.preventDefault();
+            event.returnValue = ''; // Chrome requires returnValue set
+            setVisible(true);
+            modalShown = true;
+            return '';
+          }
+        };
+
+        // Mouseleave detection for exit intent (desktop)
+        const handleMouseLeave = (e) => {
+          if(e.clientY <= 3 && !modalShown) {
+            setVisible(true);
+            modalShown = true;
+          }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        window.addEventListener('mouseout', handleMouseLeave);
+
+        return () => {
+          window.removeEventListener('beforeunload', handleBeforeUnload);
+          window.removeEventListener('mouseout', handleMouseLeave);
+        };
+      }, []);
+
+      useEffect(() => {
+        // Focus trap basic management when modal visible
+        if(visible){
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      }, [visible]);
+
+      const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}));
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!formData.businessName.trim() || !formData.colorChoice.trim() || !formData.changes.trim()) {
+          setResponseMsg('Please fill all fields before submitting.');
+          return;
+        }
+        setLoading(true);
+        setResponseMsg('');
+        fetch('https://untrekofficial.app.n8n.cloud/webhook/user-changes', {
+          method: 'POST', headers: {
+            'Content-Type': 'application/json'
+          }, body: JSON.stringify({
+            businessName: formData.businessName,
+            colorChoice: formData.colorChoice,
+            changes: formData.changes,
+            pid: 'kabob-land-restaurant'
+          })
+        }).then(res => res.json()).then(data => {
+          setLoading(false);
+          let msg = '';
+          // Expecting message property or fallback
+          if(typeof data === 'object' && data !== null){
+            msg = data.message || JSON.stringify(data);
+          } else {
+            msg = 'Changes request sent successfully.';
+          }
+          setResponseMsg(msg);
+
+          // Auto-close modal after 10s
+          setTimeout(() => {
+            setVisible(false);
+            setResponseMsg('');
+            setFormData({businessName:'', colorChoice:'', changes:''});
+          }, 10000);
+        }).catch(() => {
+          setLoading(false);
+          setResponseMsg('Error sending data. Please try again later.');
+        });
+      };
+
+      if(!visible) return null;
+      return e('div', {
+        role: 'dialog',
+        'aria-modal': 'true',
+        'aria-labelledby': 'exit-modal-title',
+        tabIndex: -1,
+        onClick: () => setVisible(false),
+        style: {
+          position: 'fixed', inset: 0, backgroundColor:'rgba(0,0,0,0.55)', zIndex: 100000,
+          display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px',
+          userSelect: 'none',
+        }
+      }, e('div', {
+        onClick: e=>e.stopPropagation(),
+        style: {
+          background: 'rgba(255 255 255 / 0.15)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderRadius: '20px',
+          width: '70%',
+          maxWidth: 650,
+          padding: '30px',
+          color: '#333',
+          fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+          boxShadow: '0 16px 48px rgb(232 90 79 / 0.4)'
+        }
+      }, 
+        e('h3', {id:'exit-modal-title', style:{marginBottom:'1rem', color:'#e85a4f', userSelect:'text'}}, 'Before You Leave'),
+        e('nav', {style:{display:'flex', gap:'1rem', marginBottom:'1.6rem', userSelect:'none'}}, 
+          e('button', {
+            onClick: () => setActiveTab('buy'),
+            'aria-selected': activeTab==='buy',
+            role:'tab',
+            tabIndex: activeTab==='buy'?0:-1,
+            style: {
+              flex:1,
+              background:activeTab==='buy'?'#e85a4f':'rgba(232, 90, 79, 0.1)',
+              border: 'none',
+              borderRadius: '60px',
+              color: activeTab==='buy'?'white':'#e85a4f',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              cursor: 'pointer',
+              padding: '0.7rem 1rem',
+              transition: 'background-color 0.3s ease, color 0.3s ease'
+            }
+          }, 'BUY Site'),
+          e('button', {
+            onClick: () => setActiveTab('changes'),
+            'aria-selected': activeTab==='changes',
+            role:'tab',
+            tabIndex: activeTab==='changes'?0:-1,
+            style: {
+              flex:1,
+              background:activeTab==='changes'?'#e85a4f':'rgba(232, 90, 79, 0.1)',
+              border: 'none',
+              borderRadius: '60px',
+              color: activeTab==='changes'?'white':'#e85a4f',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              cursor: 'pointer',
+              padding: '0.7rem 1rem',
+              transition: 'background-color 0.3s ease, color 0.3s ease'
+            }
+          }, 'Request Changes')
+        ),
+        activeTab === 'buy' && e('div', {
+          style: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '2rem 0',
+            userSelect:'text'
+          }
+        }, 
+          e('a', {
+            href: 'https://buy.stripe.com/eVa16H8Xo0nm37y4gh',
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            style: {
+              display: 'inline-block',
+              backgroundColor: '#e85a4f',
+              padding: '1rem 3rem',
+              borderRadius: '50px',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '1.3rem',
+              textDecoration: 'none',
+              boxShadow: '0 8px 20px rgb(232 90 79 / 0.6)',
+              transition: 'background-color 0.3s ease',
+              userSelect: 'none',
+              cursor: 'pointer'
+            },
+            onMouseDown: e => e.preventDefault()
+          }, 'Buy Site')
+        ),
+        activeTab === 'changes' && e('form', {
+          onSubmit: handleSubmit,
+          style: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            userSelect: 'text',
+            color: '#e85a4f',
+          },
+          noValidate: true,
+          'aria-label': 'Request Changes Form'
+        }, 
+          e('label', {htmlFor: 'businessName'}, 'Business Name'),
+          e('input', {
+            type: 'text',
+            id: 'businessName',
+            name: 'businessName',
+            required: true,
+            value: formData.businessName,
+            onChange: handleChange,
+            placeholder: 'Kabob Land Restaurant',
+            style: {
+              padding: '0.7rem 1rem',
+              borderRadius: '12px',
+              border: '1.5px solid #e85a4faa',
+              fontSize: '1rem',
+              outline: 'none'
+            },
+            'aria-required': 'true'
+          }),
+          e('label', {htmlFor: 'colorChoice'}, 'Preferred Colors'),
+          e('input', {
+            type: 'text',
+            id: 'colorChoice',
+            name: 'colorChoice',
+            required: true,
+            value: formData.colorChoice,
+            onChange: handleChange,
+            placeholder: 'E.g. Coral gradient, warm tones',
+            style: {
+              padding: '0.7rem 1rem',
+              borderRadius: '12px',
+              border: '1.5px solid #e85a4faa',
+              fontSize: '1rem',
+              outline: 'none'
+            },
+            'aria-required': 'true'
+          }),
+          e('label', {htmlFor: 'changes'}, 'Requested Changes'),
+          e('textarea', {
+            id: 'changes',
+            name: 'changes',
+            required: true,
+            rows: 5,
+            value: formData.changes,
+            onChange: handleChange,
+            placeholder: 'Please describe desired changes...',
+            style: {
+              padding: '0.7rem 1rem',
+              borderRadius: '12px',
+              border: '1.5px solid #e85a4faa',
+              fontSize: '1rem',
+              outline: 'none',
+              resize: 'vertical'
+            },
+            'aria-required': 'true'
+          }),
+          loading && e('img', {
+            src: 'https://i.imgur.com/llF5iyg.gif',
+            alt: 'Loading',
+            className: 'loading',
+            style: {width:'36px', margin:'0 auto 1rem'}
+          }),
+          e('button', {
+            type: 'submit',
+            disabled: loading,
+            style: {
+              backgroundColor: '#e85a4f',
+              color: '#fff',
+              border: 'none',
+              padding: '0.85rem 2rem',
+              borderRadius: '40px',
+              fontWeight: 700,
+              fontSize: '1.2rem',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              userSelect: 'none',
+              marginTop: '0.5rem',
+              boxShadow: loading ? 'none' : '0 8px 20px rgb(232 90 79 / 0.6)',
+              transition: 'background-color 0.3s ease'
+            },
+            onMouseDown: e => e.preventDefault()
+          }, 'Send Request'),
+          responseMsg && e('div', {
+            role: 'alert',
+            style: {marginTop: '1rem', fontWeight: 600, fontSize: '1rem', color: '#2e7d32', userSelect:'text'}
+          }, responseMsg)
+        ),
+        e('button', {
+          onClick: () => setVisible(false),
+          'aria-label': 'Close Modal',
+          style: {
+            position: 'absolute',
+            top: 18,
+            right: 18,
+            background: 'transparent',
+            border: 'none',
+            fontSize: '1.5rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            color: '#e85a4f',
+            userSelect: 'none',
+            padding: 0,
+            lineHeight: 1
+          }
+        }, '\u2715')
+      ));
+    }
+
+    ReactDOM.createRoot(root).render(e(ExitIntentModal));
+  })();
+</script>
+</body>
+</html>
