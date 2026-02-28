@@ -12,17 +12,17 @@
   body,html {
     margin:0; padding:0; scroll-behavior:smooth;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #3a1f0b;
-    color: #f5f0ea;
+    background: #faf4f0;
+    color: #4a423d;
   }
   h1,h2,h3,h4,h5,h6,p,a {
     margin:0; padding:0;
   }
   a {
-    color: #ffd6bb; text-decoration:none; transition: color 0.25s ease;
+    color: #d2694d; text-decoration:none; transition: color 0.25s ease;
   }
   a:hover, a:focus {
-    color: #ffb07a;
+    color: #a3543a;
   }
 
   /* Scrollbar */
@@ -30,15 +30,15 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #5a3e23;
+    background: #f3e6e0;
     border-radius:4px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #ffb07a;
+    background: #d2694d;
     border-radius:4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #ff9c4a;
+    background: #a3543a;
   }
 
   /* Container */
@@ -52,8 +52,8 @@
   header {
     position: sticky;
     top:0;
-    background: #5a3e23;
-    box-shadow:0 2px 10px rgb(0 0 0 / 0.25);
+    background: #f3e6e0;
+    box-shadow:0 2px 10px rgb(174 116 90 / 0.3);
     z-index: 9999;
   }
   nav {
@@ -64,8 +64,8 @@
   }
   .logo {
     font-weight: 700;
-    font-size: 1.6rem;
-    color: #ffd6bb;
+    font-size: 1.8rem;
+    color: #d2694d;
     letter-spacing: 1.5px;
     user-select:none;
     display: flex; align-items: center; gap: 0.5rem;
@@ -86,7 +86,7 @@
   }
   nav ul li a:hover,
   nav ul li a:focus {
-    border-bottom-color: #ffb07a;
+    border-bottom-color: #a3543a;
     outline:none;
   }
 
@@ -95,7 +95,7 @@
     height: 90vh;
     position: relative;
     overflow: hidden;
-    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1470&q=80');
+    background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1470&q=80'); /* Armenian kabob meal */
     background-position: center center;
     background-size: cover;
     border-radius: 0 0 35px 35px;
@@ -121,7 +121,7 @@
   }
   #hero .overlay-gradient {
     position: absolute; top:0; left:0; width:100%; height:100%;
-    background-color: rgba(58,31,11,0.75);
+    background-color: rgba(250,244,240,0.55);
     border-radius: 0 0 35px 35px;
     pointer-events:none;
     z-index: 0;
@@ -132,12 +132,12 @@
     left: 50%;
     z-index: 2;
     transform: translate(-50%, -50%);
-    color: #f5f0ea;
+    color: #7a4a3a;
     text-align: center;
     max-width: 90vw;
     padding: 1rem 2rem;
     user-select:none;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+    text-shadow: 0 2px 12px rgba(255 255 255 / 0.85);
   }
   #hero .content h1 {
     font-size: 3rem;
@@ -152,28 +152,28 @@
     font-weight: 600;
   }
   #hero .btn-cta {
-    background: #ffb07a;
+    background: #d2694d;
     border:none;
     padding: 0.85rem 2.1rem;
     border-radius: 40px;
     font-weight: 700;
     font-size: 1.1rem;
-    color: #3a1f0b;
-    box-shadow: 0 4px 16px rgba(255,176,122,0.65);
+    color: #faf4f0;
+    box-shadow: 0 4px 16px rgba(210,105,77,0.65);
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     user-select:none;
   }
   #hero .btn-cta:hover,
   #hero .btn-cta:focus {
-    background: #ff9c4a;
+    background: #a3543a;
     color: #fff;
     outline:none;
   }
   #hero .ratings {
     margin-top: 1.3rem;
     font-size: 1rem;
-    color: #ffdda9;
+    color: #dd9a7f;
     user-select:none;
     display: inline-flex;
     align-items: center;
@@ -181,7 +181,7 @@
     font-weight: 700;
   }
   #hero .ratings svg {
-    fill: #ffcc33;
+    fill: #c97857;
     width: 20px;
     height: 20px;
   }
@@ -194,14 +194,14 @@
   section h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #ffb07a;
+    color: #d2694d;
     letter-spacing: 1.5px;
     text-align: center;
     margin-bottom: 1.8rem;
     font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
   }
   section p.lead {
-    color: #ffddb8;
+    color: #7a4a3a;
     max-width: 700px;
     margin: 0 auto 3rem auto;
     font-weight: 500;
@@ -221,9 +221,9 @@
   }
   .card {
     border-radius: 20px;
-    box-shadow: 0 8px 16px rgb(58 31 11 / 0.6);
+    box-shadow: 0 8px 16px rgba(210,105,77,0.3);
     padding: 1.8rem 1.7rem 2.5rem;
-    color: #f5f0ea;
+    color: #552f21;
     position: relative;
     overflow: hidden;
     user-select:none;
@@ -238,14 +238,14 @@
   }
   .card:hover, .card:focus-within {
     transform: translateY(-8px);
-    box-shadow: 0 14px 38px rgba(255, 176, 122, 0.75);
+    box-shadow: 0 14px 38px rgba(210,105,77,0.55);
     outline:none;
   }
   .card::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(58,31,11,0.6);
+    background: rgba(250,244,240,0.75);
     border-radius: 20px;
     z-index: 0;
   }
@@ -257,7 +257,7 @@
     width: 48px;
     height: 48px;
     margin-bottom: 1rem;
-    fill: #ffb07a;
+    fill: #d2694d;
   }
   .card h3 {
     font-size: 1.4rem;
@@ -266,13 +266,13 @@
   }
   .card p {
     font-size: 1.05rem;
-    color: #f5f0ea;
+    color: #552f21;
     line-height: 1.5;
   }
 
   /* Testimonials */
   #testimonials {
-    background: #4e2d0f;
+    background: #fadac3;
     padding-bottom: 4rem;
   }
   .testimonials-wrapper {
@@ -283,12 +283,12 @@
     gap: 2rem;
   }
   .testimonial {
-    background: rgba(255 176 122 / 0.15);
+    background: rgba(210,105,77, 0.15);
     padding: 1.6rem 2rem;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgb(255 176 122 / 0.25);
+    box-shadow: 0 5px 15px rgba(210 105 77 / 0.25);
     position: relative;
-    color: #ffe7cc;
+    color: #6b4029;
     font-style: italic;
     user-select:none;
   }
@@ -301,19 +301,19 @@
     display: block;
     text-align: right;
     font-weight: 700;
-    color: #ffb07a;
+    color: #d2694d;
     font-style: normal;
   }
 
   /* Call to Action Section */
   #cta-secondary {
-    background: #5a3e23;
+    background: #f3e6e0;
     text-align: center;
     border-radius: 35px 35px 0 0;
     padding: 3rem 1rem;
-    color: #ffd6bb;
+    color: #d2694d;
     user-select:none;
-    box-shadow: inset 0 3px 15px rgba(255,176,122,0.3);
+    box-shadow: inset 0 3px 15px rgba(210,105,77,0.3);
   }
   #cta-secondary h2 {
     font-size: 2.2rem;
@@ -321,21 +321,21 @@
     font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
   }
   #cta-secondary button {
-    background: #ffb07a;
+    background: #d2694d;
     border: none;
     padding: 1rem 2.5rem;
     border-radius: 40px;
     font-weight: 700;
     font-size: 1.1rem;
-    color: #3a1f0b;
-    box-shadow: 0 6px 20px rgba(255 176 122 / 0.8);
+    color: #faf4f0;
+    box-shadow: 0 6px 20px rgba(210 105 77 / 0.8);
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     user-select:none;
   }
   #cta-secondary button:hover,
   #cta-secondary button:focus {
-    background: #ff9c4a;
+    background: #a3543a;
     color: #fff;
     outline:none;
   }
@@ -358,7 +358,7 @@
   /* Contact details */
   .contact-details {
     font-weight: 600;
-    color: #f5e6d6;
+    color: #6b4a3a;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -372,26 +372,26 @@
   .contact-details svg.icon {
     width: 28px;
     height: 28px;
-    fill: #ffb07a;
+    fill: #d2694d;
   }
   .contact-details a, .contact-details span {
     font-weight: 600;
     font-size: 1.05rem;
-    color: #ffd6bb;
+    color: #a3543a;
   }
   .contact-details a:hover,
   .contact-details a:focus {
-    color: #ffb07a;
+    color: #d2694d;
     outline:none;
   }
 
   /* Contact Form */
   form {
-    background: rgba(90,62,35,0.6);
+    background: rgba(210,105,77,0.1);
     border-radius: 20px;
     padding: 2rem 2.2rem 2.5rem;
-    box-shadow: 0 8px 32px rgba(255,176,122,0.45);
-    color: #f5f0ea;
+    box-shadow: 0 8px 32px rgba(210,105,77,0.15);
+    color: #552f21;
     max-width: 460px;
     user-select:none;
   }
@@ -399,7 +399,7 @@
     display: block;
     font-weight: 700;
     margin-bottom: 0.35rem;
-    color: #ffb07a;
+    color: #a3543a;
     font-size: 0.95rem;
   }
   form input[type="text"],
@@ -408,29 +408,29 @@
     width: 100%;
     padding: 0.65rem 0.8rem;
     border-radius: 12px;
-    border: 1.6px solid #ffb07aaa;
+    border: 1.6px solid #d2694daa;
     font-size: 1rem;
     resize: vertical;
     font-family: inherit;
     margin-bottom: 1.6rem;
-    background: #5a3e23;
-    color: #ffd6bb;
+    background: #f7f1ec;
+    color: #552f21;
   }
   form input[type="text"]:focus,
   form input[type="email"]:focus,
   form textarea:focus {
     outline:none;
-    border-color: #ff9c4a;
-    box-shadow: 0 0 10px rgba(255,156,74,0.7);
-    background: #6a4e2b;
+    border-color: #a3543a;
+    box-shadow: 0 0 10px rgba(163,84,58,0.7);
+    background: #f0e8e2;
   }
   form textarea {
     min-height: 100px;
     font-family: inherit;
   }
   form button[type="submit"] {
-    background: #ffb07a;
-    color: #3a1f0b;
+    background: #d2694d;
+    color: #faf4f0;
     border: none;
     padding: 0.85rem 2rem;
     border-radius: 40px;
@@ -439,11 +439,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     user-select:none;
-    box-shadow: 0 6px 20px rgba(255 156 74 / 0.7);
+    box-shadow: 0 6px 20px rgba(163,84,58,0.7);
   }
   form button[type="submit"]:hover,
   form button[type="submit"]:focus {
-    background: #ff9c4a;
+    background: #a3543a;
     color: #fff;
     outline:none;
   }
@@ -455,7 +455,7 @@
   form .response-message {
     text-align: center;
     font-weight: 600;
-    color: #a4c639;
+    color: #7daa89;
     font-size: 1rem;
     margin-top: 0.8rem;
     user-select:none;
@@ -466,27 +466,27 @@
     border-radius: 20px;
     width: 100%;
     height: 280px;
-    box-shadow: 0 6px 16px rgba(255 176 122 / 0.3);
+    box-shadow: 0 6px 16px rgba(210,105,77,0.15);
     border: none;
     user-select:none;
   }
 
   /* Footer */
   footer {
-    background: #522e0c;
-    color: #ffd6bb;
+    background: #d3b8af;
+    color: #7a5447;
     padding: 2rem 1rem;
     text-align: center;
     font-weight: 600;
     user-select:none;
   }
   footer a {
-    color: #ffd6bb;
+    color: #7a5447;
     text-decoration: underline;
   }
   footer a:hover,
   footer a:focus {
-    color: #ffb07a;
+    color: #a3543a;
     outline:none;
   }
 
@@ -507,8 +507,7 @@
 <header>
   <nav class="container" aria-label="Primary Navigation">
     <div class="logo" tabindex="0">
-      <img src="https://cdn.logojoy.com/wp-content/uploads/20230316101349/free-logo-arn4.png" alt="Kabob Land Logo" style="height:36px; width:auto; border-radius:5px; box-shadow: 0 0 8px #ffb07a;" />
-      Kabob Land
+      <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="Kabob Land Logo" style="height:36px; width:auto; border-radius:5px; box-shadow: 0 0 8px #d2694d;" />
     </div>
     <ul>
       <li><a href="#hero" tabindex="0">Home</a></li>
@@ -522,9 +521,9 @@
 <main>
   <section id="hero" aria-label="Hero Section">
     <div class="slider" aria-live="polite" aria-atomic="true">
-      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Meal served at Kabob Land"></div>
-      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1547592180-7c3bbbeee183?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Kabob skewers cooking on grill"></div>
-      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1553570731-da5f775da003?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Cozy dining experience"></div>
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Armenian kabob served"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1533777324565-a04df0e527b7?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Grilled kabob skewers on fire"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');" role="img" aria-label="Cozy restaurant interior"></div>
     </div>
     <div class="overlay-gradient"></div>
     <div class="content">
@@ -546,7 +545,7 @@
   <section id="services" aria-labelledby="services-title" tabindex="-1">
     <h2 id="services-title" data-animate>Our Services</h2>
     <div class="cards" aria-live="polite" data-animate>
-      <article class="card" tabindex="0" aria-label="Dine In Service" style="background-image:url('https://images.unsplash.com/photo-1543352630-11fa02ee1d86?auto=format&fit=crop&w=800&q=60');">
+      <article class="card" tabindex="0" aria-label="Dine In Service" style="background-image:url('https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=60');">
         <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 52h40v4H12zM16 16h32v20H16zM32 16v20"/></svg>
         <h3>Dine In</h3>
         <p>Enjoy a warm, welcoming atmosphere with our full seating and traditional decor.</p>
@@ -556,12 +555,12 @@
         <h3>Takeout Orders</h3>
         <p>Quick and tasty takeout options for those on the go, maintaining our quality standards.</p>
       </article>
-      <article class="card" tabindex="0" aria-label="Catering Service" style="background-image:url('https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=60');">
+      <article class="card" tabindex="0" aria-label="Catering Service" style="background-image:url('https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=60');">
         <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 24h40v20H12zM16 44h32v4H16z"/></svg>
         <h3>Catering</h3>
         <p>Make your special events memorable with our custom catering packages and menu options.</p>
       </article>
-      <article class="card" tabindex="0" aria-label="Online Reservations Service" style="background-image:url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=60');">
+      <article class="card" tabindex="0" aria-label="Online Reservations Service" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=60');">
         <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 32h24v12H20zM24 20v4h4v-4z"/></svg>
         <h3>Online Reservations</h3>
         <p>Reserve your table easily online and guarantee a perfect dining time at Kabob Land.</p>
@@ -787,17 +786,17 @@
       }, e('div', {
         onClick: e=>e.stopPropagation(),
         style: {
-          background: '#5a3e23',
+          background: '#f3e6e0',
           borderRadius: '20px',
           width: '70%',
           maxWidth: 650,
           padding: '30px',
-          color: '#ffd6bb',
+          color: '#d2694d',
           fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-          boxShadow: '0 16px 48px rgba(255,176,122,0.65)'
+          boxShadow: '0 16px 48px rgba(210,105,77,0.65)'
         }
       }, 
-        e('h3', {id:'exit-modal-title', style:{marginBottom:'1rem', color:'#ffb07a', userSelect:'text'}}, 'Before You Leave'),
+        e('h3', {id:'exit-modal-title', style:{marginBottom:'1rem', color:'#d2694d', userSelect:'text'}}, 'Before You Leave'),
         e('nav', {style:{display:'flex', gap:'1rem', marginBottom:'1.6rem', userSelect:'none'}}, 
           e('button', {
             onClick: () => setActiveTab('buy'),
@@ -806,10 +805,10 @@
             tabIndex: activeTab==='buy'?0:-1,
             style: {
               flex:1,
-              background:activeTab==='buy'?'#ffb07a':'rgba(255,176,122,0.15)',
+              background:activeTab==='buy'?'#d2694d':'rgba(210,105,77,0.15)',
               border: 'none',
               borderRadius: '60px',
-              color: activeTab==='buy'?'#5a3e23':'#ffb07a',
+              color: activeTab==='buy'?'#faf4f0':'#d2694d',
               fontWeight: 700,
               fontSize: '1.1rem',
               cursor: 'pointer',
@@ -824,10 +823,10 @@
             tabIndex: activeTab==='changes'?0:-1,
             style: {
               flex:1,
-              background:activeTab==='changes'?'#ffb07a':'rgba(255,176,122,0.15)',
+              background:activeTab==='changes'?'#d2694d':'rgba(210,105,77,0.15)',
               border: 'none',
               borderRadius: '60px',
-              color: activeTab==='changes'?'#5a3e23':'#ffb07a',
+              color: activeTab==='changes'?'#faf4f0':'#d2694d',
               fontWeight: 700,
               fontSize: '1.1rem',
               cursor: 'pointer',
@@ -851,14 +850,14 @@
             rel: 'noopener noreferrer',
             style: {
               display: 'inline-block',
-              backgroundColor: '#ffb07a',
+              backgroundColor: '#d2694d',
               padding: '1rem 3rem',
               borderRadius: '50px',
-              color: '#5a3e23',
+              color: '#faf4f0',
               fontWeight: 700,
               fontSize: '1.3rem',
               textDecoration: 'none',
-              boxShadow: '0 8px 20px rgba(255,176,122,0.8)',
+              boxShadow: '0 8px 20px rgba(210,105,77,0.8)',
               transition: 'background-color 0.3s ease',
               userSelect: 'none',
               cursor: 'pointer'
@@ -873,7 +872,7 @@
             flexDirection: 'column',
             gap: '1rem',
             userSelect: 'text',
-            color: '#ffb07a',
+            color: '#d2694d',
           },
           noValidate: true,
           'aria-label': 'Request Changes Form'
@@ -890,11 +889,11 @@
             style: {
               padding: '0.7rem 1rem',
               borderRadius: '12px',
-              border: '1.5px solid rgba(255,176,122,0.67)',
+              border: '1.5px solid rgba(210,105,77,0.67)',
               fontSize: '1rem',
               outline: 'none',
-              backgroundColor: '#5a3e23',
-              color: '#ffd6bb'
+              backgroundColor: '#f3e6e0',
+              color: '#552f21'
             },
             'aria-required': 'true'
           }),
@@ -910,11 +909,11 @@
             style: {
               padding: '0.7rem 1rem',
               borderRadius: '12px',
-              border: '1.5px solid rgba(255,176,122,0.67)',
+              border: '1.5px solid rgba(210,105,77,0.67)',
               fontSize: '1rem',
               outline: 'none',
-              backgroundColor: '#5a3e23',
-              color: '#ffd6bb'
+              backgroundColor: '#f3e6e0',
+              color: '#552f21'
             },
             'aria-required': 'true'
           }),
@@ -930,12 +929,12 @@
             style: {
               padding: '0.7rem 1rem',
               borderRadius: '12px',
-              border: '1.5px solid rgba(255,176,122,0.67)',
+              border: '1.5px solid rgba(210,105,77,0.67)',
               fontSize: '1rem',
               outline: 'none',
               resize: 'vertical',
-              backgroundColor: '#5a3e23',
-              color: '#ffd6bb'
+              backgroundColor: '#f3e6e0',
+              color: '#552f21'
             },
             'aria-required': 'true'
           }),
@@ -949,8 +948,8 @@
             type: 'submit',
             disabled: loading,
             style: {
-              backgroundColor: '#ffb07a',
-              color: '#5a3e23',
+              backgroundColor: '#d2694d',
+              color: '#faf4f0',
               border: 'none',
               padding: '0.85rem 2rem',
               borderRadius: '40px',
@@ -959,14 +958,14 @@
               cursor: loading ? 'not-allowed' : 'pointer',
               userSelect: 'none',
               marginTop: '0.5rem',
-              boxShadow: loading ? 'none' : '0 8px 20px rgba(255,176,122,0.8)',
+              boxShadow: loading ? 'none' : '0 8px 20px rgba(210,105,77,0.8)',
               transition: 'background-color 0.3s ease'
             },
             onMouseDown: e => e.preventDefault()
           }, 'Send Request'),
           responseMsg && e('div', {
             role: 'alert',
-            style: {marginTop: '1rem', fontWeight: 600, fontSize: '1rem', color: '#a4c639', userSelect:'text'}
+            style: {marginTop: '1rem', fontWeight: 600, fontSize: '1rem', color: '#7daa89', userSelect:'text'}
           }, responseMsg)
         ),
         e('button', {
@@ -981,7 +980,7 @@
             fontSize: '1.5rem',
             fontWeight: '700',
             cursor: 'pointer',
-            color: '#ffb07a',
+            color: '#d2694d',
             userSelect: 'none',
             padding: 0,
             lineHeight: 1
